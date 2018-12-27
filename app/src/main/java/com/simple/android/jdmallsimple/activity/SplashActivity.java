@@ -42,7 +42,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation arg0) {
-                ActivityUtil.start(SplashActivity.this, MainActivity.class,true);
+                ActivityUtil.start(SplashActivity.this, LoginActivity.class,true);
             }
         });
         anim.setDuration(3000);
