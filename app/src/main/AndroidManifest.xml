@@ -17,9 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegistActivity"></activity>
+        <activity android:name=".activity.MainActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.LoginActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name=".activity.RegistActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

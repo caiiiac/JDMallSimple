@@ -44,7 +44,7 @@ public abstract class BaseActivity extends FragmentActivity implements IModeChan
     }
 
     public void tip(String tipStr) {
-        Toast.makeText(this, tipStr, 0).show();
+        Toast.makeText(this, tipStr, Toast.LENGTH_SHORT).show();
     }
 
     protected boolean ifValueWasEmpty(String... values) {
