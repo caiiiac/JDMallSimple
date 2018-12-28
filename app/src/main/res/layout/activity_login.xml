@@ -123,13 +123,13 @@
             android:text="新 用 户 "
             android:textSize="14sp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@null"
-            android:onClick="resetPwdClick"
-            android:text="重置密码 "
-            android:textSize="14sp" />
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:background="@null"-->
+            <!--android:onClick="resetPwdClick"-->
+            <!--android:text="重置密码 "-->
+            <!--android:textSize="14sp" />-->
     </RelativeLayout>
 </LinearLayout>
