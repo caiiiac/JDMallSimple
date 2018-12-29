@@ -42,7 +42,7 @@ public class RegistActivity extends BaseActivity {
 
     @Override
     protected void initController() {
-        mController = new UserController();
+        mController = new UserController(this);
         mController.setIModeChangeListener(this);
     }
 

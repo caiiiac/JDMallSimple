@@ -28,4 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.alibaba:fastjson:1.2.54'
+    implementation 'com.facebook.fresco:fresco:1.11.0'
 }
