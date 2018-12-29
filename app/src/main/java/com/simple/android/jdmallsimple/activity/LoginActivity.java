@@ -69,6 +69,9 @@ public class LoginActivity extends BaseActivity {
     protected void initUI() {
         mNameEt = findViewById(R.id.name_et);
         mPwdEt = findViewById(R.id.pwd_et);
+
+        // 从本地获取保存的用户
+        mController.sendAsyncMessage(IdiyMessage.GET_USER_ACTION, 0);
     }
 
     public void loginClick(View v) {
