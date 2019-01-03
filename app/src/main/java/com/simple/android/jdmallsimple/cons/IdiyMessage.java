@@ -34,4 +34,7 @@ public class IdiyMessage {
 
     public static final int BRAND_ACTION=21;
     public static final int BRAND_ACTION_RESULT=22;
+
+    public static final int PRODUCT_LIST_ACTION=23;
+    public static final int PRODUCT_LIST_ACTION_RESULT=24;
 }

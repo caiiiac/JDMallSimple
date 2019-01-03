@@ -17,4 +17,6 @@ public class NetworkConst {
     public static final String CATEGORY_URL=BASE_URL+"/category";
 
     public static final String BRAND_URL=BASE_URL+"/brand";
+
+    public static final String PRODUCTLIST_URL=BASE_URL+"/searchProduct";
 }
