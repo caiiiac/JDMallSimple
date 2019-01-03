@@ -28,4 +28,10 @@ public class IdiyMessage {
 
     public static final int TOPCATEGORY_ACTION=17;
     public static final int TOPCATEGORY_ACTION_RESULT=18;
+
+    public static final int SUBCATEGORY_ACTION=19;
+    public static final int SUBCATEGORY_ACTION_RESULT=20;
+
+    public static final int BRAND_ACTION=21;
+    public static final int BRAND_ACTION_RESULT=22;
 }

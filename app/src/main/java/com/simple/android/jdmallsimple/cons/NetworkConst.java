@@ -15,4 +15,6 @@ public class NetworkConst {
     public static final String GETYOURFAV_URL=BASE_URL+"/getYourFav";
 
     public static final String CATEGORY_URL=BASE_URL+"/category";
+
+    public static final String BRAND_URL=BASE_URL+"/brand";
 }
