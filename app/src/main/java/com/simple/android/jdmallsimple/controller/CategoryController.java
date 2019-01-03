@@ -95,7 +95,6 @@ public class CategoryController extends BaseController {
         String jsonStr = NetworkUtil.doGet(NetworkConst.CATEGORY_URL+"?parentId="+parentId);
         RResult resultBean = JSON.parseObject(jsonStr, RResult.class);
         if (resultBean.isSuccess()) {
-//			Log.v("520it",resultBean.getResult());
             return JSON.parseArray(resultBean.getResult(),RSubCategory.class);
         }
         return new ArrayList<RSubCategory>();
