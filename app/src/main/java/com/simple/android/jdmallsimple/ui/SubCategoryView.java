@@ -100,6 +100,7 @@ public class SubCategoryView extends FlexiScrollView implements IViewContainer, 
         mColumnLl.setOrientation(LinearLayout.VERTICAL);
         mColumnLl.setGravity(Gravity.CENTER_HORIZONTAL);
         lineLl.addView(mColumnLl);
+
         mColumnLl.setOnClickListener(this);
         mColumnLl.setTag(thirdCategory);
         // 6.往列的容器里面添加图片
@@ -171,15 +172,13 @@ public class SubCategoryView extends FlexiScrollView implements IViewContainer, 
 
     private void initBannerIv() {
         String imageUrlPath = mTopCategoryBean.getBannerUrl().replace("http","https");
-        SimpleDraweeView bannerIv = new SimpleDraweeView(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        SimpleDraweeView banner = new SimpleDraweeView(getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, getWidth() / 2);
         params.setMargins(8, 8, 8, 8);
-        bannerIv.setLayoutParams(params);
-        bannerIv.setScaleType(ImageView.ScaleType.FIT_XY);
-        bannerIv.setImageURI(imageUrlPath);
-        mContainerLl.addView(bannerIv);
+        banner.setLayoutParams(params);
+//        banner.setScaleType(ImageView.ScaleType.FIT_XY);
+        banner.setImageURI(imageUrlPath);
+        mContainerLl.addView(banner);
     }
 
     @Override
