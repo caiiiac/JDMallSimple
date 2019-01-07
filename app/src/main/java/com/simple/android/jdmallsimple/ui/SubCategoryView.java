@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.simple.android.jdmallsimple.R;
+import com.simple.android.jdmallsimple.activity.ProductListActivity;
 import com.simple.android.jdmallsimple.bean.RSubCategory;
 import com.simple.android.jdmallsimple.bean.RTopCategory;
 import com.simple.android.jdmallsimple.cons.IdiyMessage;
@@ -189,6 +190,10 @@ public class SubCategoryView extends FlexiScrollView implements IViewContainer, 
     @Override
     public void onClick(View v) {
 //		当点击3级分类 需要传递3级分类数据给商品列表页
-
+        RTopCategory thirdCategory = (RTopCategory) v.getTag();
+        Intent intent = new Intent(getContext(), ProductListActivity.class);
+        intent.putExtra(TOPRODUCTLISTKEY, thirdCategory.getId());
+        intent.putExtra(TOPCATEGORY_ID, mTopCategoryBean.getId());
+        getContext().startActivity(intent);
     }
 }
