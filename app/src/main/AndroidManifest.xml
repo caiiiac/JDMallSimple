@@ -28,7 +28,8 @@
         <activity
             android:name=".activity.RegistActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".activity.ProductListActivity"></activity>
+        <activity android:name=".activity.ProductListActivity" />
+        <activity android:name=".activity.ProductDetailsActivity"></activity>
     </application>
 
 </manifest>
