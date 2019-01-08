@@ -2,7 +2,9 @@ package com.simple.android.jdmallsimple.ui.pop;
 
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,7 +66,12 @@ public class ProductSortPopWindow extends IPopupWindowProtocal implements OnClic
     public void onShow(View anchor) {
 
         if (mPopupWindow != null) {
-            mPopupWindow.showAsDropDown(anchor, 0, 0);
+
+            Rect visibleFrame = new Rect();
+            anchor.getGlobalVisibleRect(visibleFrame);
+            int height = anchor.getResources().getDisplayMetrics().heightPixels - visibleFrame.bottom;
+            mPopupWindow.setHeight(height);
+            mPopupWindow.showAsDropDown(anchor,0,0);
         }
     }
 }
