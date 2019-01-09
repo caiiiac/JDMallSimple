@@ -41,4 +41,9 @@ public class RecommendAdapter extends JDBaseAdapter<RRecommndProduct> {
         holer.priceTv.setText("¥ "+bean.getPrice());
         return convertView;
     }
+
+    @Override
+    public long getItemId(int position) {
+        return mDatas!=null?mDatas.get(position).getProductId():0;
+    }
 }

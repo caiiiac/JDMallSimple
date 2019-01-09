@@ -12,8 +12,14 @@ import com.simple.android.jdmallsimple.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductCommentFragment extends Fragment {
+public class ProductCommentFragment extends BaseFragment {
 
+
+    public static final int ALL_COMMENT=0;
+    public static final int GOOD_COMMENT=1;
+    public static final int CENTER_COMMENT=2;
+    public static final int BAD_COMMENT=3;
+    public static final int HASIMAGE_COMMENT=4;
 
     public ProductCommentFragment() {
         // Required empty public constructor
@@ -27,4 +33,8 @@ public class ProductCommentFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_product_comment, container, false);
     }
 
+    @Override
+    protected void initUI() {
+
+    }
 }

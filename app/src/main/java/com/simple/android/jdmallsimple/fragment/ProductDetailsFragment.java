@@ -12,7 +12,7 @@ import com.simple.android.jdmallsimple.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductDetailsFragment extends Fragment {
+public class ProductDetailsFragment extends BaseFragment {
 
 
     public ProductDetailsFragment() {
@@ -27,4 +27,8 @@ public class ProductDetailsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_product_details, container, false);
     }
 
+    @Override
+    protected void initUI() {
+
+    }
 }

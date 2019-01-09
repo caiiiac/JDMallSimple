@@ -3,6 +3,7 @@ package com.simple.android.jdmallsimple.fragment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.simple.android.jdmallsimple.controller.BaseController;
 import com.simple.android.jdmallsimple.listener.IModeChangeListener;
@@ -31,5 +32,9 @@ public abstract class BaseFragment extends Fragment implements IModeChangeListen
     @Override
     public void onModeChanged(int action, Object... values) {
         mHandler.obtainMessage(action, values[0]).sendToTarget();
+    }
+
+    public void tip(String tipStr) {
+        Toast.makeText(getActivity(), tipStr, 0).show();
     }
 }

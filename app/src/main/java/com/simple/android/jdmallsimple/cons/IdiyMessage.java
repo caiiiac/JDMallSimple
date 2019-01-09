@@ -37,4 +37,16 @@ public class IdiyMessage {
 
     public static final int PRODUCT_LIST_ACTION=23;
     public static final int PRODUCT_LIST_ACTION_RESULT=24;
+
+    public static final int PRODUCT_INFO_ACTION=25;
+    public static final int PRODUCT_INFO_ACTION_RESULT=26;
+
+    public static final int GOOD_COMMENT_ACTION=27;
+    public static final int GOOD_COMMENT_ACTION_RESULT=28;
+
+    public static final int GET_COMMENT_COUNT_ACTION=29;
+    public static final int GET_COMMENT_COUNT_ACTION_RESULT=30;
+
+    public static final int GET_COMMENT_ACTION=31;
+    public static final int GET_COMMENT_ACTION_RESULT=32;
 }

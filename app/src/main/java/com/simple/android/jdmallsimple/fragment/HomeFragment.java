@@ -2,6 +2,7 @@ package com.simple.android.jdmallsimple.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
@@ -9,12 +10,15 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.simple.android.jdmallsimple.R;
+import com.simple.android.jdmallsimple.activity.ProductDetailsActivity;
+import com.simple.android.jdmallsimple.activity.ProductListActivity;
 import com.simple.android.jdmallsimple.adapter.RecommendAdapter;
 import com.simple.android.jdmallsimple.adapter.SecondKillAdapter;
 import com.simple.android.jdmallsimple.bean.Banner;
@@ -31,7 +35,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class HomeFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class HomeFragment extends BaseFragment implements ViewPager.OnPageChangeListener, AdapterView.OnItemClickListener {
 
 
     private ViewPager mAdVp;
@@ -149,6 +153,15 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         mRecommendGv = getActivity().findViewById(R.id.recommend_gv);
         mRecommendAdapter = new RecommendAdapter(getActivity());
         mRecommendGv.setAdapter(mRecommendAdapter);
+        mRecommendGv.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        long pId = mRecommendAdapter.getItemId(position);
+        Intent intent=new Intent(getActivity(), ProductDetailsActivity.class);
+        intent.putExtra(ProductListActivity.TODETAILSKEY, pId);
+        startActivity(intent);
     }
 
     public class ADAdapter extends PagerAdapter {

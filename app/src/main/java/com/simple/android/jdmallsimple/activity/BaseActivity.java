@@ -32,6 +32,10 @@ public abstract class BaseActivity extends FragmentActivity implements IModeChan
 
     protected abstract void initUI();
 
+    protected void initData() {
+        // default Empty implementn
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

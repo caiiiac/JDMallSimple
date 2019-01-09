@@ -19,4 +19,14 @@ public class NetworkConst {
     public static final String BRAND_URL=BASE_URL+"/brand";
 
     public static final String PRODUCTLIST_URL=BASE_URL+"/searchProduct";
+
+    public static final String PRODUCTINFO_URL=BASE_URL+"/productInfo";
+
+    public static final String PRODUCTCOMMENT_URL=BASE_URL+"/productComment";
+
+    public static final String PRODUCTDETAIL_URL=BASE_URL+"/productDetail";
+
+    public static final String COMMENTCOUNT_URL=BASE_URL+"/commentCount";
+
+    public static final String COMMENTDETAIL_URL=BASE_URL+"/commentDetail";
 }

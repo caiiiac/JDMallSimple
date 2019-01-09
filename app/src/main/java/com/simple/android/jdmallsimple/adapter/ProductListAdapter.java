@@ -43,4 +43,9 @@ public class ProductListAdapter extends JDBaseAdapter<RProductList> {
         holer.commentrateTv.setText(bean.getCommentCount()+"条评价  好评"+bean.getFavcomRate()+"%");
         return convertView;
     }
+
+    @Override
+    public long getItemId(int position) {
+        return mDatas!=null?mDatas.get(position).getId():0;
+    }
 }

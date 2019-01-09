@@ -28,7 +28,7 @@ import com.simple.android.jdmallsimple.util.FixedViewUtil;
 
 import java.util.List;
 
-public class ProductListActivity extends BaseActivity implements View.OnClickListener, IProductSortChanegListener {
+public class ProductListActivity extends BaseActivity implements View.OnClickListener, IProductSortChanegListener, AdapterView.OnItemClickListener {
 
     private long mTopCategoryId;//1级分类id   品牌列表的参数
     private long mCategoryId;//3级分类id		商品列表
@@ -49,6 +49,7 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
     private EditText mMaxPriceTv;
     private ListView mProductLv;
     private ProductListAdapter mAdapter;
+    public static final String TODETAILSKEY="TODETAILSKEY";
 
     @Override
     protected void handlerMessage(Message msg) {
@@ -93,8 +94,8 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
         mController.setIModeChangeListener(this);
     }
 
-
-    private void initData() {
+    @Override
+    protected void initData() {
         Intent intent = getIntent();
         mCategoryId = intent.getLongExtra(SubCategoryView.TOPRODUCTLISTKEY,0);
         mTopCategoryId = intent.getLongExtra(SubCategoryView.TOPCATEGORY_ID,0);
@@ -204,6 +205,7 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
         mProductLv =(ListView) findViewById(R.id.product_lv);
         mAdapter = new ProductListAdapter(this);
         mProductLv.setAdapter(mAdapter);
+        mProductLv.setOnItemClickListener(this);
     }
 
     @Override
@@ -266,5 +268,13 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
                 mController.sendAsyncMessage(IdiyMessage.PRODUCT_LIST_ACTION, mSendArgs);
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        long pId = mAdapter.getItemId(position);
+        Intent intent=new Intent(this, ProductDetailsActivity.class);
+        intent.putExtra(TODETAILSKEY, pId);
+        startActivity(intent);
     }
 }
