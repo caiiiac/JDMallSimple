@@ -83,6 +83,7 @@ public class CommentAdapter extends JDBaseAdapter<RProductComment> {
         // 清空老数据
         for (int i = 0; i < childCount; i++) {
             SimpleDraweeView smiv = (SimpleDraweeView) containerLl.getChildAt(i);
+            smiv.setImageURI("");
         }
         // 设置新的数据
         for (int i = 0; i < realSize; i++) {

@@ -65,9 +65,8 @@ public class GoodCommentAdapter extends JDBaseAdapter<RGoodComment> {
         int realSize = Math.min(childCount, dataSize);
         // 清空老数据
         for (int i = 0; i < childCount; i++) {
-            SimpleDraweeView smiv = (SimpleDraweeView) holer.imageContainerLl
-                    .getChildAt(i);
-//            smiv.setImageDrawable(new BitmapDrawable());
+            SimpleDraweeView smiv = (SimpleDraweeView) holer.imageContainerLl.getChildAt(i);
+            smiv.setImageURI("");
         }
         // 设置新的数据
         for (int i = 0; i < realSize; i++) {

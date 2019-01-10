@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -35,16 +36,21 @@ public class ProductDetailsFragment extends BaseFragment {
     @Override
     protected void initUI() {
         mWebView =(WebView) getActivity().findViewById(R.id.webview);
-        ProductDetailsActivity activity = (ProductDetailsActivity) getActivity();
+//        ProductDetailsActivity activity = (ProductDetailsActivity) getActivity();
 //        mWebView.loadUrl(NetworkConst.PRODUCTDETAIL_URL+"?productId="+activity.mProductId);
         mWebView.loadUrl("http://www.163.com");
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                String url = request.getUrl().toString();
+                if (url.startsWith("http")) {
+                    view.loadUrl(url);
+                    return true;
+                }
+                return false;
             }
         });
+
         mWebView.getSettings().setJavaScriptEnabled(true);
     }
 }
