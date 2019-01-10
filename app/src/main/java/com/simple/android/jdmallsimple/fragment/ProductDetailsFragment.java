@@ -36,7 +36,8 @@ public class ProductDetailsFragment extends BaseFragment {
     protected void initUI() {
         mWebView =(WebView) getActivity().findViewById(R.id.webview);
         ProductDetailsActivity activity = (ProductDetailsActivity) getActivity();
-        mWebView.loadUrl(NetworkConst.PRODUCTDETAIL_URL+"?productId="+activity.mProductId);
+//        mWebView.loadUrl(NetworkConst.PRODUCTDETAIL_URL+"?productId="+activity.mProductId);
+        mWebView.loadUrl("http://www.163.com");
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
