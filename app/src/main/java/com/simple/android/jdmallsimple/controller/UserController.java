@@ -1,8 +1,10 @@
 package com.simple.android.jdmallsimple.controller;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.alibaba.fastjson.JSON;
+import com.simple.android.jdmallsimple.JDApplication;
 import com.simple.android.jdmallsimple.bean.RResult;
 import com.simple.android.jdmallsimple.cons.IdiyMessage;
 import com.simple.android.jdmallsimple.cons.NetworkConst;
@@ -15,10 +17,12 @@ import java.util.HashMap;
 public class UserController extends BaseController {
 
     private UserDao mUserDao;
+    protected long mUserId;
 
     public UserController(Context c) {
         super(c);
         mUserDao=new UserDao(mContext);
+        initUserId(c);
     }
 
     @Override
@@ -48,6 +52,14 @@ public class UserController extends BaseController {
                 clearUser();
                 mListener.onModeChanged(IdiyMessage.CLEAR_USER_ACTION_RESULT, 0);
                 break;
+        }
+    }
+
+    private void initUserId(Context c) {
+        Activity activity=(Activity) c;
+        JDApplication jdApplication=(JDApplication) activity.getApplication();
+        if (jdApplication.mRLoginResult!=null) {
+            mUserId=jdApplication.mRLoginResult.getId();
         }
     }
 

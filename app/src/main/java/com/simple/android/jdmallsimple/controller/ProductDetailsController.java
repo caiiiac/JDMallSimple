@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProductDetailsController extends BaseController {
+public class ProductDetailsController extends UserController {
 
     public ProductDetailsController(Context c) {
         super(c);
@@ -43,7 +43,23 @@ public class ProductDetailsController extends BaseController {
                 List<RProductComment> dats = loadComment((Long) values[0], (Integer) values[1]);
                 mListener.onModeChanged(IdiyMessage.GET_COMMENT_ACTION_RESULT, dats);
                 break;
+            case IdiyMessage.ADD2SHOPCAR_ACTION:
+                RResult resultBean = add2shopcar((Long) values[0],
+                        (Integer) values[1], (String) values[2]);
+                mListener.onModeChanged(IdiyMessage.ADD2SHOPCAR_ACTION_RESULT,
+                        resultBean);
+                break;
         }
+    }
+
+    private RResult add2shopcar(long pid, int buyCount, String pversion) {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("userId", mUserId + "");
+        params.put("productId", pid + "");
+        params.put("buyCount", buyCount + "");
+        params.put("pversion", pversion);
+        String jsonStr = NetworkUtil.doPost(NetworkConst.TOSHOPCAR_URL, params);
+        return JSON.parseObject(jsonStr, RResult.class);
     }
 
     private List<RProductComment> loadComment(long pid, int type) {

@@ -3,6 +3,7 @@ package com.simple.android.jdmallsimple.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,6 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.simple.android.jdmallsimple.R;
+import com.simple.android.jdmallsimple.bean.RResult;
+import com.simple.android.jdmallsimple.cons.IdiyMessage;
+import com.simple.android.jdmallsimple.controller.ProductDetailsController;
 import com.simple.android.jdmallsimple.fragment.ProductCommentFragment;
 import com.simple.android.jdmallsimple.fragment.ProductDetailsFragment;
 import com.simple.android.jdmallsimple.fragment.ProductIntroduceFragment;
@@ -20,6 +24,8 @@ public class ProductDetailsActivity extends BaseActivity
         implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
     public long mProductId;
+    public int mBuyCount = 1;
+    public String mProductVersion = "";
     private View mDetailsIndicator;
     private View mIntroduceIndicator;
     private View mCommentIndicator;
@@ -31,7 +37,21 @@ public class ProductDetailsActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         initData();
+        initController();
         initUI();
+    }
+
+    @Override
+    protected void handlerMessage(Message message) {
+        //		添加购物车的代码
+//		IdiyMessage.ADD2SHOPCAR_ACTION_RESULT
+        RResult bean=(RResult) message.obj;
+        if (bean.isSuccess()) {
+            tip("添加成功");
+//            finish();
+        }else {
+            tip("添加失败:"+bean.getErrorMsg());
+        }
     }
 
     @Override
@@ -45,6 +65,12 @@ public class ProductDetailsActivity extends BaseActivity
     }
 
     @Override
+    protected void initController() {
+        mController = new ProductDetailsController(this);
+        mController.setIModeChangeListener(this);
+    }
+
+    @Override
     protected void initUI() {
         findViewById(R.id.introduce_ll).setOnClickListener(this);
         findViewById(R.id.details_ll).setOnClickListener(this);
@@ -54,7 +80,7 @@ public class ProductDetailsActivity extends BaseActivity
         mIntroduceIndicator = findViewById(R.id.introduce_view);
         mCommentIndicator = findViewById(R.id.comment_view);
 
-        mContainerVp =(ViewPager) findViewById(R.id.container_vp);
+        mContainerVp = findViewById(R.id.container_vp);
         mContainerAdapter = new ContainerAdapter(getSupportFragmentManager());
         mContainerVp.setAdapter(mContainerAdapter);
         mContainerVp.setOnPageChangeListener(this);
@@ -135,5 +161,21 @@ public class ProductDetailsActivity extends BaseActivity
         }
     }
 
+    public void add2ShopCar(View v) {
+        // 1.商品id
+        // 2.购买的数量
+        // 3.商品的型号
+        if (mBuyCount == 0) {
+            tip("请设置购买的数量");
+            return;
+        }
+        if (mProductVersion.equals("")) {
+            tip("请设置购买的型号");
+            return;
+        }
+        // 发送请求需要mController三个参数
+        mController.sendAsyncMessage(IdiyMessage.ADD2SHOPCAR_ACTION,
+                mProductId, mBuyCount, mProductVersion);
+    }
 
 }

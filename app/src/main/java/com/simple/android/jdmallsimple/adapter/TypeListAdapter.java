@@ -30,4 +30,9 @@ public class TypeListAdapter extends JDBaseAdapter<String> {
         brandBtn.setSelected(position==mCurrentTabPosition);
         return convertView;
     }
+
+    @Override
+    public Object getItem(int position) {
+        return mDatas != null ? mDatas.get(position) : "";
+    }
 }

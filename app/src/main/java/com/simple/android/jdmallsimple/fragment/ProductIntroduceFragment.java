@@ -22,6 +22,7 @@ import com.simple.android.jdmallsimple.bean.RGoodComment;
 import com.simple.android.jdmallsimple.bean.RProductInfo;
 import com.simple.android.jdmallsimple.cons.IdiyMessage;
 import com.simple.android.jdmallsimple.controller.ProductDetailsController;
+import com.simple.android.jdmallsimple.listener.INumberInputListener;
 import com.simple.android.jdmallsimple.ui.NumberInputView;
 import com.simple.android.jdmallsimple.util.FixedViewUtil;
 
@@ -32,7 +33,7 @@ import java.util.TimerTask;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductIntroduceFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+public class ProductIntroduceFragment extends BaseFragment implements AdapterView.OnItemClickListener, INumberInputListener {
 
 
     private ViewPager mAdVp;
@@ -157,13 +158,19 @@ public class ProductIntroduceFragment extends BaseFragment implements AdapterVie
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initData();
         initController();
         initUI();
-        mActivity = (ProductDetailsActivity) getActivity();
+
         mController.sendAsyncMessage(IdiyMessage.PRODUCT_INFO_ACTION,
                 mActivity.mProductId);
         mController.sendAsyncMessage(IdiyMessage.GOOD_COMMENT_ACTION,
                 mActivity.mProductId);
+    }
+
+
+    private void initData() {
+        mActivity = (ProductDetailsActivity) getActivity();
     }
 
     @Override
@@ -177,18 +184,22 @@ public class ProductIntroduceFragment extends BaseFragment implements AdapterVie
         mAdVp = (ViewPager) getActivity().findViewById(R.id.advp);
         mAdAdapter = new ProductAdAdapter();
         mAdVp.setAdapter(mAdAdapter);
-        mAdIndicator = (TextView) getActivity().findViewById(R.id.vp_indic_tv);
-        mProductNameTv = (TextView) getActivity().findViewById(R.id.name_tv);
-        mSelfSaleTv = (TextView) getActivity().findViewById(R.id.self_sale_tv);
-        mRecommendProductTv = (TextView) getActivity().findViewById(R.id.recommend_p_tv);
-        mTypeListLv = (ListView) getActivity().findViewById(R.id.product_versions_lv);
+        mAdIndicator = getActivity().findViewById(R.id.vp_indic_tv);
+        mProductNameTv = getActivity().findViewById(R.id.name_tv);
+        mSelfSaleTv = getActivity().findViewById(R.id.self_sale_tv);
+        mRecommendProductTv = getActivity().findViewById(R.id.recommend_p_tv);
+
+        mTypeListLv = getActivity().findViewById(R.id.product_versions_lv);
         mTypeListAdapter = new TypeListAdapter(getActivity());
         mTypeListLv.setAdapter(mTypeListAdapter);
         mTypeListLv.setOnItemClickListener(this);
-        mNumberInputView = (NumberInputView) getActivity().findViewById(R.id.number_input_et);
-        mGoodCommentRateTv = (TextView) getActivity().findViewById(R.id.good_rate_tv);
-        mGoodCommentTv = (TextView) getActivity().findViewById(R.id.good_comment_tv);
-        mGoodCommentLv = (ListView) getActivity().findViewById(R.id.good_comment_lv);
+
+        mNumberInputView = getActivity().findViewById(R.id.number_input_et);
+        mNumberInputView.setListener(this);
+
+        mGoodCommentRateTv = getActivity().findViewById(R.id.good_rate_tv);
+        mGoodCommentTv = getActivity().findViewById(R.id.good_comment_tv);
+        mGoodCommentLv = getActivity().findViewById(R.id.good_comment_lv);
         mGoodCommentAdapter = new GoodCommentAdapter(getActivity());
         mGoodCommentLv.setAdapter(mGoodCommentAdapter);
     }
@@ -198,5 +209,17 @@ public class ProductIntroduceFragment extends BaseFragment implements AdapterVie
                             long id) {
         mTypeListAdapter.mCurrentTabPosition=position;
         mTypeListAdapter.notifyDataSetChanged();
+
+        //		1.获取选中的item数据
+        String data = (String) mTypeListAdapter.getItem(position);
+//		2.赋值给Activity.mProductVersion
+        mActivity.mProductVersion=data;
+    }
+
+    //只要购买的数量改变(包括加减  输入的文本)--->调用该方法
+    @Override
+    public void onTextChange(int num) {
+        //修改Activity里面的数据
+        mActivity.mBuyCount=num;
     }
 }
