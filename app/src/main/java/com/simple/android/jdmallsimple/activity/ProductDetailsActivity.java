@@ -83,7 +83,7 @@ public class ProductDetailsActivity extends BaseActivity
         mContainerVp = findViewById(R.id.container_vp);
         mContainerAdapter = new ContainerAdapter(getSupportFragmentManager());
         mContainerVp.setAdapter(mContainerAdapter);
-        mContainerVp.setOnPageChangeListener(this);
+        mContainerVp.addOnPageChangeListener(this);
     }
 
     public class ContainerAdapter extends FragmentPagerAdapter {
