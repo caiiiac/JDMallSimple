@@ -70,4 +70,13 @@ public class IdiyMessage {
 
     public static final int AREA_ACTION=45;
     public static final int AREA_ACTION_RESULT=46;
+
+    public static final int ADD_RECEIVER_ACTION=47;
+    public static final int ADD_RECEIVER_ACTION_RESULT=48;
+
+    public static final int CHOOSE_RECEIVER_ACTION=49;
+    public static final int CHOOSE_RECEIVER_ACTION_RESULT=50;
+
+    public static final int ADD_ORDER_ACTION=51;
+    public static final int ADD_ORDER_ACTION_RESULT=52;
 }

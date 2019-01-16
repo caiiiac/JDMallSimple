@@ -1,6 +1,7 @@
 package com.simple.android.jdmallsimple.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.simple.android.jdmallsimple.listener.IShopcarCheckChanngeListener;
 import com.simple.android.jdmallsimple.listener.IShopcarDeleteLister;
 import com.simple.android.jdmallsimple.util.ActivityUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +37,7 @@ public class ShopcarFragment extends BaseFragment implements
     private TextView mSettleTv;
     private TextView mAllMoneyTv;
     private CheckBox mAllItemCbx;
+    private double mTotalPrice;
 
     @Override
     protected void handlerMessage(Message msg) {
@@ -116,6 +119,7 @@ public class ShopcarFragment extends BaseFragment implements
 
     @Override
     public void onTotalPriceChanged(double newestPrice) {
+        mTotalPrice = newestPrice;
         mAllMoneyTv.setText("总额: ¥ " + newestPrice);
     }
 
@@ -132,6 +136,9 @@ public class ShopcarFragment extends BaseFragment implements
                 shopcarId);
     }
 
+    public static final String CHECKDATAS="CHECKDATAS";
+    public static final String CHECKTOTALPRICE="CHECKTOTALPRICE";
+
     //TODO 结算的按钮
     @Override
     public void onClick(View v) {
@@ -140,7 +147,11 @@ public class ShopcarFragment extends BaseFragment implements
             tip("请选择购买的商品!");
             return ;
         }
-        ActivityUtil.start(getActivity(), SettleActivity.class, false);
+        Intent intent=new Intent(getActivity(),SettleActivity.class);
+        ArrayList<RShopcar> checkedDatas = mShopcarAdapter.getCheckedItems();
+        intent.putExtra(CHECKDATAS, checkedDatas);
+        intent.putExtra(CHECKTOTALPRICE, mTotalPrice);
+        startActivity(intent);
     }
 
 

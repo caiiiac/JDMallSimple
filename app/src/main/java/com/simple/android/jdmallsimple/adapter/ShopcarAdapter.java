@@ -94,6 +94,16 @@ public class ShopcarAdapter extends JDBaseAdapter<RShopcar> {
         return false;
     }
 
+    public ArrayList<RShopcar> getCheckedItems(){
+        ArrayList<RShopcar> result=new ArrayList<RShopcar>();
+        for (int i = 0; i < sItemChecked.size(); i++) {
+            if (sItemChecked.get(i)) {
+                result.add(mDatas.get(i));
+            }
+        }
+        return result;
+    }
+
     class ViewHolder{
         CheckBox itemCbx;
         SimpleDraweeView smiv;

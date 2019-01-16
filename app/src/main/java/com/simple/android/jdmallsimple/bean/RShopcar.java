@@ -1,6 +1,8 @@
 package com.simple.android.jdmallsimple.bean;
 
-public class RShopcar {
+import java.io.Serializable;
+
+public class RShopcar implements Serializable {
 
     private long id;
     private long pid;

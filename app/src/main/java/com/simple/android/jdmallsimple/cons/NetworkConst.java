@@ -43,4 +43,8 @@ public class NetworkConst {
     public static final String CITY_URL=BASE_URL+"/city";
 
     public static final String AREA_URL=BASE_URL+"/area";
+
+    public static final String ADDADDRESS_URL=BASE_URL+"/addAddress";
+
+    public static final String ADDORDER_URL=BASE_URL+"/addOrder";
 }
