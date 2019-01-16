@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.simple.android.jdmallsimple.R;
+import com.simple.android.jdmallsimple.activity.SettleActivity;
 import com.simple.android.jdmallsimple.adapter.ShopcarAdapter;
 import com.simple.android.jdmallsimple.bean.RResult;
 import com.simple.android.jdmallsimple.bean.RShopcar;
@@ -139,7 +140,7 @@ public class ShopcarFragment extends BaseFragment implements
             tip("请选择购买的商品!");
             return ;
         }
-//        ActivityUtil.start(getActivity(), SettleActivity.class, false);
+        ActivityUtil.start(getActivity(), SettleActivity.class, false);
     }
 
 
