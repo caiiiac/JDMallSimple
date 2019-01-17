@@ -11,10 +11,15 @@ public abstract class IPopupWindowProtocal {
 
     public IPopupWindowProtocal(Context mContext) {
         this.mContext = mContext;
+        initController();
         initUI();
     }
 
     protected abstract void initUI();
+
+    protected void initController(){
+
+    }
 
     public abstract void onShow(View anchor);
 

@@ -39,6 +39,7 @@ public class AddOrderDialog extends AlertDialog implements
     @Override
     public void onClick(View v) {
         //TODO 确定按钮
+
     }
 
 }
