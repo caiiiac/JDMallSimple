@@ -7,6 +7,8 @@ import com.simple.android.jdmallsimple.bean.RArea;
 import com.simple.android.jdmallsimple.bean.RReceiver;
 import com.simple.android.jdmallsimple.bean.RResult;
 import com.simple.android.jdmallsimple.bean.RShopcar;
+import com.simple.android.jdmallsimple.bean.SAddOrderParams;
+import com.simple.android.jdmallsimple.bean.SAddReceiverParams;
 import com.simple.android.jdmallsimple.cons.IdiyMessage;
 import com.simple.android.jdmallsimple.cons.NetworkConst;
 import com.simple.android.jdmallsimple.util.NetworkUtil;
@@ -48,7 +50,56 @@ public class ShopcarController extends UserController {
                 mListener.onModeChanged(IdiyMessage.AREA_ACTION_RESULT,
                         loadArea(NetworkConst.AREA_URL,(String)values[0]));
                 break;
+            case IdiyMessage.ADD_RECEIVER_ACTION:
+                mListener.onModeChanged(IdiyMessage.ADD_RECEIVER_ACTION_RESULT,
+                        addReceiver((SAddReceiverParams) values[0]));
+                break;
+            case IdiyMessage.CHOOSE_RECEIVER_ACTION:
+                mListener.onModeChanged(IdiyMessage.CHOOSE_RECEIVER_ACTION_RESULT,
+                        loadReceivers());
+                break;
+            case IdiyMessage.ADD_ORDER_ACTION:
+                mListener.onModeChanged(IdiyMessage.ADD_ORDER_ACTION_RESULT,
+                        addOrder((SAddOrderParams) values[0]));
+                break;
         }
+    }
+
+    private RResult addOrder(SAddOrderParams paramsBean) {
+        paramsBean.setUserId(mUserId);
+        String jsonParams = JSON.toJSONString(paramsBean);
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("detail", jsonParams);
+        String jsonStr = NetworkUtil.doPost(NetworkConst.ADDORDER_URL, params);
+        return JSON.parseObject(jsonStr, RResult.class);
+    }
+
+    private List<RReceiver> loadReceivers() {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("userId", mUserId + "");
+        params.put("isDefault", "false");
+        String jsonStr = NetworkUtil.doPost(NetworkConst.RECEIVEADDRESS_URL,
+                params);
+        RResult resultBean = JSON.parseObject(jsonStr, RResult.class);
+        if (resultBean.isSuccess()) {
+            return JSON.parseArray(resultBean.getResult(), RReceiver.class);
+        }
+        return new ArrayList<RReceiver>();
+    }
+
+    private RResult addReceiver(SAddReceiverParams bean) {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("userId", mUserId + "");
+        params.put("name", bean.name);
+        params.put("phone", bean.phone);
+        params.put("provinceCode", bean.provinceCode);
+        params.put("cityCode", bean.cityCode);
+        params.put("distCode", bean.distCode);
+        params.put("addressDetails", bean.addressDetails);
+        params.put("isDefault", bean.isDefault + "");
+        String jsonStr = NetworkUtil
+                .doPost(NetworkConst.ADDADDRESS_URL, params);
+        return JSON.parseObject(jsonStr, RResult.class);
     }
 
     private List<RArea> loadArea(String urlPath, String fcode){
