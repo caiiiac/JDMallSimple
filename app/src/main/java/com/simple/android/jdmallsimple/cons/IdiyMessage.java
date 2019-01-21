@@ -79,4 +79,28 @@ public class IdiyMessage {
 
     public static final int ADD_ORDER_ACTION=51;
     public static final int ADD_ORDER_ACTION_RESULT=52;
+
+    public static final int WAIT_PAY_ACTION=53;
+    public static final int WAIT_PAY_ACTION_RESULT=54;
+
+    public static final int WAIT_RECEIVE_ACTION=55;
+    public static final int WAIT_RECEIVE_ACTION_RESULT=56;
+
+    public static final int COMPLETE_ORDER_ACTION=57;
+    public static final int COMPLETE_ORDER_ACTION_RESULT=58;
+
+    public static final int CONFIRM_ORDER_ACTION=59;
+    public static final int CONFIRM_ORDER_ACTION_RESULT=60;
+
+    public static final int GET_ALIPAYINFO_ACTION=61;
+    public static final int GET_ALIPAYINFO_ACTION_RESULT=62;
+
+    public static final int MOCK_PAY_ACTION=63;
+    public static final int MOCK_PAY_ACTION_RESULT=64;
+
+    public static final int GET_ORDER_DETIALS_ACTION=65;
+    public static final int GET_ORDER_DETIALS_ACTION_RESULT=66;
+
+    public static final int ALL_ORDER_ACTION=67;
+    public static final int ALL_ORDER_ACTION_RESULT=68;
 }

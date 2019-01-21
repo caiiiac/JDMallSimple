@@ -47,4 +47,14 @@ public class NetworkConst {
     public static final String ADDADDRESS_URL=BASE_URL+"/addAddress";
 
     public static final String ADDORDER_URL=BASE_URL+"/addOrder";
+
+    public static final String GETORDERBYSTATUS_URL=BASE_URL+"/getOrderByStatus";
+
+    public static final String CONFIRMORDER_URL=BASE_URL+"/confirmOrder";
+
+    public static final String GETPAYINFO_URL=BASE_URL+"/getPayInfo";
+
+    public static final String PAY_URL=BASE_URL+"/pay";
+
+    public static final String GETORDERDETAIL_URL=BASE_URL+"/getOrderDetail";
 }
