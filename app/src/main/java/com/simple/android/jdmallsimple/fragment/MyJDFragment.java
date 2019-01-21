@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.simple.android.jdmallsimple.JDApplication;
 import com.simple.android.jdmallsimple.R;
 import com.simple.android.jdmallsimple.activity.LoginActivity;
+import com.simple.android.jdmallsimple.activity.OrderListActivity;
 import com.simple.android.jdmallsimple.bean.RLoginResult;
 import com.simple.android.jdmallsimple.cons.IdiyMessage;
 import com.simple.android.jdmallsimple.controller.UserController;
@@ -103,6 +104,9 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
             case R.id.logout_btn:
                 mController.sendAsyncMessage(IdiyMessage.CLEAR_USER_ACTION, 0);
                 break;
+            case R.id.mine_order:
+                ActivityUtil.start(getActivity(), OrderListActivity.class, false);
+                break;;
         }
     }
 
