@@ -1,6 +1,8 @@
 package com.simple.android.jdmallsimple.bean;
 
-public class RReceiver {
+import java.io.Serializable;
+
+public class RReceiver implements Serializable {
 
     private long id;
     private boolean isDefault;

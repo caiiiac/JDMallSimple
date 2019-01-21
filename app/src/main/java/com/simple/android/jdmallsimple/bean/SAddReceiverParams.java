@@ -10,6 +10,18 @@ public class SAddReceiverParams {
     public String addressDetails;
     public boolean isDefault;
 
+    public SAddReceiverParams(String name, String phone, String provinceCode,
+                              String cityCode, String distCode, String addressDetails,
+                              boolean isDefault) {
+        this.name = name;
+        this.phone = phone;
+        this.provinceCode = provinceCode;
+        this.cityCode = cityCode;
+        this.distCode = distCode;
+        this.addressDetails = addressDetails;
+        this.isDefault = isDefault;
+    }
+
     public String getName() {
         return name;
     }

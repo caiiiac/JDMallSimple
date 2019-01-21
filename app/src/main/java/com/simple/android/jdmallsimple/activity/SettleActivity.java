@@ -162,14 +162,14 @@ public class SettleActivity extends BaseActivity implements View.OnClickListener
 
     public void addAddress(View v) {
         // 启动一个新的界面
-//        Intent intent = new Intent(this, AddReciverActivity.class);
-//        startActivityForResult(intent, ADD_RECEIVER_REQ);
+        Intent intent = new Intent(this, AddReciverActivity.class);
+        startActivityForResult(intent, ADD_RECEIVER_REQ);
     }
 
     public void chooseAddress(View v) {
         // 启动一个新的界面
-//        Intent intent = new Intent(this, ChooseReceiverActivity.class);
-//        startActivityForResult(intent, CHOOSE_RECEIVER_REQ);
+        Intent intent = new Intent(this, ChooseReceiverActivity.class);
+        startActivityForResult(intent, CHOOSE_RECEIVER_REQ);
     }
 
     @Override
