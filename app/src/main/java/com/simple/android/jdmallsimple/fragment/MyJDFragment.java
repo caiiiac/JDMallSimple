@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.simple.android.jdmallsimple.JDApplication;
@@ -29,6 +30,7 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
     private TextView mUserLevelTv;
     private TextView mWaitPayTv;
     private TextView mWaitReciveTv;
+    private LinearLayout mMyJdOrderLl;
 
     @Override
     protected void handlerMessage(Message msg) {
@@ -60,12 +62,13 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initUI() {
+        // 退出登录事件
         getActivity().findViewById(R.id.logout_btn).setOnClickListener(this);
 //		1.找到所有的用户控件
-        mUserNameTv =(TextView) getActivity().findViewById(R.id.user_name_tv);
-        mUserLevelTv =(TextView) getActivity().findViewById(R.id.user_level_tv);
-        mWaitPayTv =(TextView) getActivity().findViewById(R.id.wait_pay_tv);
-        mWaitReciveTv =(TextView) getActivity().findViewById(R.id.wait_receive_tv);
+        mUserNameTv = getActivity().findViewById(R.id.user_name_tv);
+        mUserLevelTv = getActivity().findViewById(R.id.user_level_tv);
+        mWaitPayTv = getActivity().findViewById(R.id.wait_pay_tv);
+        mWaitReciveTv = getActivity().findViewById(R.id.wait_receive_tv);
 //		2.执行一个后台请求更新控件
         JDApplication applicationInfo = (JDApplication) getActivity().getApplication();
         RLoginResult mRLoginResult = applicationInfo.mRLoginResult;
@@ -73,6 +76,9 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
         initUserLevel(mRLoginResult);
         mWaitPayTv.setText(mRLoginResult.getWaitPayCount()+"");
         mWaitReciveTv.setText(mRLoginResult.getWaitReceiveCount()+"");
+
+        mMyJdOrderLl = getActivity().findViewById(R.id.mine_order);
+        mMyJdOrderLl.setOnClickListener(this);
     }
 
     private void initUserLevel(RLoginResult mRLoginResult) {
@@ -106,7 +112,7 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.mine_order:
                 ActivityUtil.start(getActivity(), OrderListActivity.class, false);
-                break;;
+                break;
         }
     }
 
