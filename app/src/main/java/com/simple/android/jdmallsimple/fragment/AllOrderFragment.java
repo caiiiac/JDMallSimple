@@ -4,6 +4,7 @@ package com.simple.android.jdmallsimple.fragment;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class AllOrderFragment extends OrderBaseFragment implements IConfirmRecei
     }
 
     private void handleConfirmOrder(RResult resultBean){
-        if (resultBean.isSuccess()) {
+        if (resultBean != null && resultBean.isSuccess()) {
             mController.sendAsyncMessage(IdiyMessage.ALL_ORDER_ACTION,
                     OrderStatusCost.ALL_ORDER);
         }else {
@@ -68,7 +69,8 @@ public class AllOrderFragment extends OrderBaseFragment implements IConfirmRecei
 
     @Override
     public void onRefresh() {
-
+        mController.sendAsyncMessage(IdiyMessage.ALL_ORDER_ACTION,
+                OrderStatusCost.ALL_ORDER);
     }
 
     @Override
